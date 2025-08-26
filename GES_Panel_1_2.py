@@ -25,8 +25,8 @@ bl_info = {
     "name": "Earth Studio",
     "author": "Rob Jolly - Imagiscope",
     "description": "Earth Studio Tools Addon",
-    "blender": (2, 80, 0),
-    "version": (1, 2, 2),
+    "blender": (4, 0, 0),
+    "version": (1, 2, 3),
     "location": "View3D",
     "warning": "",
     "category": "Import-Export"
@@ -917,8 +917,9 @@ def objecttokml():
             obj.data.splines[0].resolution_u = 2
 
             override = bpy.context.copy()
-            bpy.ops.object.convert(override,target='MESH')  
-            bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
+            with bpy.context.temp_override(**override):
+                bpy.ops.object.convert(target='MESH')
+                bpy.ops.object.parent_clear(type='CLEAR_KEEP_TRANSFORM')
             rmode = True
                        
     bpy.data.objects[src_obj.name].select_set(False)

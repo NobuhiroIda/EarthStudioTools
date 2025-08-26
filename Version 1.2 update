@@ -1,3 +1,6 @@
+Version 1.2.3:
+- Changes to support blender 4.x for objecttokml()
+
 Version 1.2.2:
 - Added code for new KML layout
 
